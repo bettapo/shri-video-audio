@@ -5,7 +5,7 @@ const initUrl = BASE_URL + 'bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.
 let sourceBuffer;
 let index = 1;
 const amountOfChunks = 159;
-const video = document.querySelector('video');
+const video = document.getElementsByTagName('video')[0];
 
 function fetchSegment(url) {
     return fetch(url, {
