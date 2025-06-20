@@ -20,36 +20,47 @@ function fetchSegment(url) {
     });
 }
 
-if (window.MediaSource) {
-    const ms = new MediaSource();
-    ms.addEventListener('sourceopen', onMediaSourceOpen);
-    video.src = URL.createObjectURL(ms);
-
-    function onMediaSourceOpen() {
-        sourceBuffer = ms.addSourceBuffer('video/mp4; codecs="avc1.64001f"');
-        sourceBuffer.addEventListener('updateend', fetchAndAppendNextSegment);
-
-        fetchSegment(initUrl).then((e) => {
-            appendToBuffer(e);
-            video.play();
-        });
+function getMediaSource() {
+    if (window.ManagedMediaSource) {
+        return new window.ManagedMediaSource();
     }
 
-    function fetchAndAppendNextSegment() {
-        const url = BASE_URL + `bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_${index}.m4v`;
-
-        fetchSegment(url).then((e) => {
-            appendToBuffer(e);
-            index++;
-            if (index > amountOfChunks) {
-                sourceBuffer.removeEventListener('updateend', fetchAndAppendNextSegment);
-            }
-        });
+    if (window.MediaSource) {
+        return new window.MediaSource();
     }
 
-    function appendToBuffer(videoChunk) {
-        sourceBuffer.appendBuffer(new Uint8Array(videoChunk));
-    }
-} else {
-    console.error('No Media Source API available');
+    throw new Error('No MediaSource API available');
+}
+
+const ms = new getMediaSource();
+console.log(ms);
+ms.addEventListener('sourceopen', onMediaSourceOpen);
+video.src = URL.createObjectURL(ms);
+
+function onMediaSourceOpen() {
+    console.log('sourceopen');
+    sourceBuffer = ms.addSourceBuffer('video/mp4; codecs="avc1.64001f"');
+    sourceBuffer.addEventListener('updateend', fetchAndAppendNextSegment);
+
+    fetchSegment(initUrl).then((e) => {
+        appendToBuffer(e);
+        video.play();
+    });
+}
+
+function fetchAndAppendNextSegment() {
+    const url = BASE_URL + `bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_${index}.m4v`;
+
+    fetchSegment(url).then((e) => {
+        appendToBuffer(e);
+        index++;
+        if (index > amountOfChunks) {
+            sourceBuffer.removeEventListener('updateend', fetchAndAppendNextSegment);
+        }
+    });
+}
+
+function appendToBuffer(videoChunk) {
+    console.log('appendToBuffer');
+    sourceBuffer.appendBuffer(new Uint8Array(videoChunk));
 }
