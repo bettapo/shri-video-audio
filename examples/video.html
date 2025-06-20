@@ -12,5 +12,12 @@
             width="400px"
             height="400px"
         ></video>
+        <script>
+            const video = document.getElementsByTagName('video')[0];
+            
+            console.log('MOV support: ', video.canPlayType('video/quicktime'));
+            console.log('WebM support: ', video.canPlayType('video/webm'));
+            console.log('Mp4 with H264 support: ', video.canPlayType('video/mp4; codecs="avc1.4D401E, mp4a.40.2"'));
+        </script>
     </body>
 </html>
