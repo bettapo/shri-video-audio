@@ -1,0 +1,15 @@
+{
+    "restartable": "rs",
+    "ignore": ["node_modules/**/node_modules"],
+    "script": "./server.js",
+    "verbose": true,
+    "execMap": {
+        "js": "node"
+    },
+    "watch": ["./**"],
+    "signal": "SIGTERM",
+    "env": {
+        "NODE_ENV": "production"
+    },
+    "ext": "js,html"
+}

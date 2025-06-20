@@ -1,0 +1,26 @@
+{
+    "name": "shri-video-audio",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prettier": "prettier . --ignore-path .gitignore --ignore-path .eslintignore --ignore-unknown",
+        "prettier:fix": "npm run prettier -- --write",
+        "start": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bettapo/shri-video-audio.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/bettapo/shri-video-audio/issues"
+    },
+    "homepage": "https://github.com/bettapo/shri-video-audio#readme",
+    "devDependencies": {
+        "express": "^5.1.0",
+        "prettier": "^3.5.3"
+    }
+}
