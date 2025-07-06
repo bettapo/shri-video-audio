@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
     <head>
+        <meta charset="UTF-8" />
         <title>Web Audio API</title>
+        <link rel="stylesheet" href="../styles.css" />
     </head>
-
     <body>
         <audio
             id="audio"
@@ -58,5 +59,9 @@
 
             track.connect(gainNode).connect(panner).connect(audioCtx.destination);
         </script>
+
+        <div class="back-link">
+            <a href="../index.html">← На главную</a>
+        </div>
     </body>
 </html>
