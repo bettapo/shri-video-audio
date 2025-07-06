@@ -1,11 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8" />
         <title>MSE Example</title>
+        <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
+        <h1>Мультимедиа в браузере — примеры</h1>
+        <p>Выберите страницу с примером для просмотра:</p>
+        <ul>
+            <li><a href="examples/audio.html">Пример: аудио</a></li>
+            <li><a href="examples/video.html">Пример: видео</a></li>
+            <li><a href="examples/video_with_source.html">Пример: видео с источниками</a></li>
+            <li><a href="examples/web_audio_api.html">Пример: Web Audio API</a></li>
+        </ul>
+
         <video controls playsinline width="80%" x-webkit-airplay="deny"></video>
+        <script src="index.js"></script>
     </body>
-    <script src="index.js"></script>
 </html>
