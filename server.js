@@ -13,5 +13,5 @@ app.use('/index.js', express.static('index.js'));
 app.use('/styles.css', express.static('styles.css'));
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Приложение запущено по адресу http://localhost:${port}/index.html`);
 });
